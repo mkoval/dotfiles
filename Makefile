@@ -1,9 +1,8 @@
 CP=cp
 RM=rm -f
-GIT=git
 MKDIR=mkdir
 VIM_CONFIG_PATH=$(HOME)/.vim
-TARGETS=$(HOME)/.vimrc
+TARGETS=$(HOME)/.vimrc $(HOME)/.config/pianobar
 GENERATED=$(VIM_CONFIG_PATH)
 
 .PHONY: all clean
@@ -12,12 +11,16 @@ GENERATED=$(VIM_CONFIG_PATH)
 all: $(TARGETS)
 
 clean:
-	$(RM) $(TARGETS)
-	$(RM) -r $(GENERATED)
+	rm -rf $(TARGETS) $(GENERATED)
 
-$(HOME)/.vimrc: vimrc $(VIM_CONFIG_PATH)/bundle/vundle
-	$(CP) $< $@
+$(HOME)/.%: %
+	cp -r $< $@
 
 $(VIM_CONFIG_PATH)/bundle/vundle:
-	$(MKDIR) -p $(dir $@)
-	$(GIT) clone https://github.com/gmarik/vundle.git $@
+	mkdir -p $(dir $@)
+	git clone https://github.com/gmarik/vundle.git $@
+
+# Install vundle to manage vim packages.
+$(HOME)/.vimrc: vimrc $(VIM_CONFIG_PATH)/bundle/vundle
+	cp -r $< $@
+	vim +BundleInstall +qall
