@@ -16,6 +16,7 @@ Bundle 'FuzzyFinder'
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'puppetlabs/puppet-syntax-vim'
 
 " Filetype detection.
 filetype plugin indent on
@@ -65,8 +66,13 @@ cnoremap <Esc>d <S-right><Delete>
 cnoremap <C-g>  <C-c>
 
 " Color scheme.
-set background=dark
-colorscheme solarized
+if has("gui_running")
+    set background=dark
+    colorscheme solarized
+else
+    colorscheme default
+endif
+
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
     set t_Co=256
 endif
