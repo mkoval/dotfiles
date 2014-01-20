@@ -17,6 +17,8 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'puppetlabs/puppet-syntax-vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'kien/ctrlp.vim'
 
 " Filetype detection.
 filetype plugin indent on
@@ -66,12 +68,17 @@ cnoremap <Esc>d <S-right><Delete>
 cnoremap <C-g>  <C-c>
 
 " Color scheme.
+syntax on
 if has("gui_running")
     set background=dark
     colorscheme solarized
 else
     colorscheme default
 endif
+
+" YCM C-family language auto-completion.
+let g:ycm_confirm_extra_conf = 0
+nnoremap <F2> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
     set t_Co=256
