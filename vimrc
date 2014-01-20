@@ -2,6 +2,10 @@ set nocompatible
 set mouse=a
 set ttymouse=xterm
 
+" Change the leader and show it while its active.
+set showcmd
+let mapleader=','
+
 " Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -19,6 +23,7 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
 
 " Filetype detection.
 filetype plugin indent on
@@ -78,13 +83,13 @@ endif
 
 " Ctrl + P remapping.
 nmap ; :CtrlPBuffer<CR>
-:let g:ctrlp_map = '<Leader>t'
-:let g:ctrlp_match_window_bottom = 0 
-:let g:ctrlp_match_window_reversed = 0 
-:let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-:let g:ctrlp_working_path_mode = 0 
-:let g:ctrlp_dotfiles = 0 
-:let g:ctrlp_switch_buffer = 0
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_match_window_bottom = 0 
+let g:ctrlp_match_window_reversed = 0 
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+let g:ctrlp_working_path_mode = 0 
+let g:ctrlp_dotfiles = 0 
+let g:ctrlp_switch_buffer = 0
 
 " YCM C-family language auto-completion.
 let g:ycm_confirm_extra_conf = 0
